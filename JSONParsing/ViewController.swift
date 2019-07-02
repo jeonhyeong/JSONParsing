@@ -26,7 +26,6 @@ struct MainDetail:Codable {
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
-    let weatherAPI = "52ca9a7575667779bdbaac151c103d10"
     let locationManager = CLLocationManager()
     var weatherResult: CurrentWeather?
     
