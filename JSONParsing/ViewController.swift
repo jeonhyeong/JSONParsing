@@ -29,6 +29,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        indicator.stopAnimating();
+        self.weatherImage.image = UIImage(named: "fail.png")
+        self.showLabel(result: false)
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coor = manager.location?.coordinate {
             let param = "lat=\(coor.latitude)&lon=\(coor.longitude)"
@@ -40,7 +46,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                             self.indicator.stopAnimating()
                             self.weatherImage.image = UIImage(named: "fail.png")
                             self.showLabel(result: false)
-                            print("http error : \(error!)")
                         }
                         return
                     }
@@ -53,7 +58,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 } catch {
                     self.weatherImage.image = UIImage(named: "fail.png")
                     self.showLabel(result: false)
-                    print("decode error : \(error)")
                 }
             }).resume()
         }
