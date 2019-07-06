@@ -44,6 +44,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     DispatchQueue.main.sync {
                         self.indicator.stopAnimating()
                         self.setWeather(nil, false)
+                        print("urlsession error : \(error!)")
                     }
                     return
                 }
@@ -55,6 +56,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 } catch {
                     self.weatherImage.image = UIImage(named: "fail.png")
                     self.showLabel(result: false)
+                    print("decode error : \(error)")
                 }
             }).resume()
         }
