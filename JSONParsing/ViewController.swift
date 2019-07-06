@@ -68,12 +68,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if result {
             nameLabel.text = weatherInfo!.name
             weatherLabel.text = weatherInfo!.weather
-            tempLabel.text = String(Int(weatherInfo!.temp - 273.15)) + "°C"
+            tempLabel.text = String(getCelsius(temp: weatherInfo!.temp)) + "°C"
             showLabel(result: true)
         } else {
             weatherImage.image = UIImage(named: "fail.png")
             showLabel(result: false)
         }
+    }
+    
+    //Absolute temperature convert to celsius
+    func getCelsius(temp:Float) -> Int {
+        return Int(temp - 273.15)
     }
     
     func showLabel(result: Bool) {
