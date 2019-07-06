@@ -40,7 +40,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         if let coor = manager.location?.coordinate {
             let param = "lat=\(coor.latitude)&lon=\(coor.longitude)"
             let URLStr = "https://devcho.herokuapp.com/weather?"+param
-            URLSession.shared.dataTask(with: URL(string: URLStr)!, completionHandler: {(data, response, error) -> Void in
+            URLSession.shared.dataTask(with: URL(string: URLStr)!, completionHandler: {(weatherData, response, error) -> Void in
                 do {
                     guard error == nil else {
                         DispatchQueue.main.sync {
@@ -49,7 +49,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         }
                         return
                     }
-                    guard let data = data else {return}
+                    guard let data = weatherData else {return}
                     self.weatherResult = try JSONDecoder().decode(CurrentWeather.self, from: data)
                     DispatchQueue.main.sync {
                         self.indicator.stopAnimating()
