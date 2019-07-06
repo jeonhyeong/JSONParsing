@@ -32,8 +32,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.denied {
             self.indicator.stopAnimating()
-            self.weatherImage.image = UIImage(named: "fail.png")
-            self.showLabel(result: false)
+            setWeather(nil, false)
         }
     }
     
@@ -46,8 +45,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     guard error == nil else {
                         DispatchQueue.main.sync {
                             self.indicator.stopAnimating()
-                            self.weatherImage.image = UIImage(named: "fail.png")
-                            self.showLabel(result: false)
+                            self.setWeather(nil, false)
                         }
                         return
                     }
@@ -55,7 +53,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     self.weatherResult = try JSONDecoder().decode(CurrentWeather.self, from: data)
                     DispatchQueue.main.sync {
                         self.indicator.stopAnimating()
-                        self.setWeather(WeatherInfo(name: self.weatherResult!.name, weather: self.weatherResult!.weather[0].main, temp: self.weatherResult!.main.temp))
+                        self.setWeather(WeatherInfo(name: self.weatherResult!.name, weather: self.weatherResult!.weather[0].main, temp: self.weatherResult!.main.temp), true)
                     }
                 } catch {
                     self.weatherImage.image = UIImage(named: "fail.png")
@@ -65,12 +63,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func setWeather(_ weatherInfo: WeatherInfo) {
-        setWeatherImage(weather: weatherInfo.weather)
-        self.nameLabel.text = weatherInfo.name
-        self.weatherLabel.text = weatherInfo.weather
-        self.tempLabel.text = String(Int(weatherInfo.temp - 273.15)) + "°C"
-        showLabel(result: true)
+    func setWeather(_ weatherInfo: WeatherInfo?, _ result: Bool) {
+        if result {
+            setWeatherImage(weather: weatherInfo!.weather)
+            self.nameLabel.text = weatherInfo!.name
+            self.weatherLabel.text = weatherInfo!.weather
+            self.tempLabel.text = String(Int(weatherInfo!.temp - 273.15)) + "°C"
+            showLabel(result: true)
+        } else {
+            self.weatherImage.image = UIImage(named: "fail.png")
+            self.showLabel(result: false)
+        }
     }
     
     func showLabel(result: Bool) {
