@@ -54,9 +54,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     self.weatherInfo = WeatherInfo(name: weatherResult.name, weather: weatherResult.weather[0].main, temp: weatherResult.main.temp)
                     self.setWeatherImage(weather: self.weatherInfo!.weather)
                 } catch {
-                    self.weatherImage.image = UIImage(named: "fail.png")
-                    self.showLabel(result: false)
-                    print("decode error : \(error)")
+                    DispatchQueue.main.sync {
+                        self.indicator.stopAnimating()
+                        self.setWeather(nil, false)
+                        print("decode error : \(error)")
+                    }
                 }
             }).resume()
         }
