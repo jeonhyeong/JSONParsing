@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3D360C4F22D0AB43005E04F7 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D360C4E22D0AB43005E04F7 /* Weather.swift */; };
+		3DA66BDC22D0EF2600CFAA0F /* JSONParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA66BDB22D0EF2600CFAA0F /* JSONParsingTests.swift */; };
 		3DCFDECC22797F6500B84D26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFDECB22797F6500B84D26 /* AppDelegate.swift */; };
 		3DCFDECE22797F6500B84D26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFDECD22797F6500B84D26 /* ViewController.swift */; };
 		3DCFDED122797F6500B84D26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFDECF22797F6500B84D26 /* Main.storyboard */; };
@@ -15,8 +16,21 @@
 		3DCFDED622797F6600B84D26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFDED422797F6600B84D26 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3DA66BDE22D0EF2600CFAA0F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3DCFDEC022797F6500B84D26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3DCFDEC722797F6500B84D26;
+			remoteInfo = JSONParsing;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		3D360C4E22D0AB43005E04F7 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		3DA66BD922D0EF2600CFAA0F /* JSONParsingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JSONParsingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DA66BDB22D0EF2600CFAA0F /* JSONParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParsingTests.swift; sourceTree = "<group>"; };
+		3DA66BDD22D0EF2600CFAA0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DCFDEC822797F6500B84D26 /* JSONParsing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONParsing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCFDECB22797F6500B84D26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DCFDECD22797F6500B84D26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -27,6 +41,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3DA66BD622D0EF2600CFAA0F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DCFDEC522797F6500B84D26 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -37,10 +58,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DA66BDA22D0EF2600CFAA0F /* JSONParsingTests */ = {
+			isa = PBXGroup;
+			children = (
+				3DA66BDB22D0EF2600CFAA0F /* JSONParsingTests.swift */,
+				3DA66BDD22D0EF2600CFAA0F /* Info.plist */,
+			);
+			path = JSONParsingTests;
+			sourceTree = "<group>";
+		};
 		3DCFDEBF22797F6500B84D26 = {
 			isa = PBXGroup;
 			children = (
 				3DCFDECA22797F6500B84D26 /* JSONParsing */,
+				3DA66BDA22D0EF2600CFAA0F /* JSONParsingTests */,
 				3DCFDEC922797F6500B84D26 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				3DCFDEC822797F6500B84D26 /* JSONParsing.app */,
+				3DA66BD922D0EF2600CFAA0F /* JSONParsingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +102,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3DA66BD822D0EF2600CFAA0F /* JSONParsingTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3DA66BE222D0EF2600CFAA0F /* Build configuration list for PBXNativeTarget "JSONParsingTests" */;
+			buildPhases = (
+				3DA66BD522D0EF2600CFAA0F /* Sources */,
+				3DA66BD622D0EF2600CFAA0F /* Frameworks */,
+				3DA66BD722D0EF2600CFAA0F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3DA66BDF22D0EF2600CFAA0F /* PBXTargetDependency */,
+			);
+			name = JSONParsingTests;
+			productName = JSONParsingTests;
+			productReference = 3DA66BD922D0EF2600CFAA0F /* JSONParsingTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3DCFDEC722797F6500B84D26 /* JSONParsing */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3DCFDEDA22797F6600B84D26 /* Build configuration list for PBXNativeTarget "JSONParsing" */;
@@ -97,6 +147,10 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = cho;
 				TargetAttributes = {
+					3DA66BD822D0EF2600CFAA0F = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 3DCFDEC722797F6500B84D26;
+					};
 					3DCFDEC722797F6500B84D26 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -116,11 +170,19 @@
 			projectRoot = "";
 			targets = (
 				3DCFDEC722797F6500B84D26 /* JSONParsing */,
+				3DA66BD822D0EF2600CFAA0F /* JSONParsingTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3DA66BD722D0EF2600CFAA0F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DCFDEC622797F6500B84D26 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -134,6 +196,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3DA66BD522D0EF2600CFAA0F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DA66BDC22D0EF2600CFAA0F /* JSONParsingTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3DCFDEC422797F6500B84D26 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -145,6 +215,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3DA66BDF22D0EF2600CFAA0F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3DCFDEC722797F6500B84D26 /* JSONParsing */;
+			targetProxy = 3DA66BDE22D0EF2600CFAA0F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3DCFDECF22797F6500B84D26 /* Main.storyboard */ = {
@@ -166,6 +244,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3DA66BE022D0EF2600CFAA0F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = JSONParsingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cho.JSONParsingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSONParsing.app/JSONParsing";
+			};
+			name = Debug;
+		};
+		3DA66BE122D0EF2600CFAA0F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = JSONParsingTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.cho.JSONParsingTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JSONParsing.app/JSONParsing";
+			};
+			name = Release;
+		};
 		3DCFDED822797F6600B84D26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -321,6 +437,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3DA66BE222D0EF2600CFAA0F /* Build configuration list for PBXNativeTarget "JSONParsingTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3DA66BE022D0EF2600CFAA0F /* Debug */,
+				3DA66BE122D0EF2600CFAA0F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3DCFDEC322797F6500B84D26 /* Build configuration list for PBXProject "JSONParsing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
