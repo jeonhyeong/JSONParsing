@@ -12,8 +12,7 @@ import CoreLocation
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     let locationManager = CLLocationManager()
-    var weatherResult: CurrentWeather?
-    
+    var weatherInfo: WeatherInfo?
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -31,7 +30,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == CLAuthorizationStatus.denied {
-            self.indicator.stopAnimating()
+            indicator.stopAnimating()
             setWeather(nil, false)
         }
     }
@@ -50,11 +49,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                         return
                     }
                     guard let data = weatherData else {return}
-                    self.weatherResult = try JSONDecoder().decode(CurrentWeather.self, from: data)
-                    DispatchQueue.main.sync {
-                        self.indicator.stopAnimating()
-                        self.setWeather(WeatherInfo(name: self.weatherResult!.name, weather: self.weatherResult!.weather[0].main, temp: self.weatherResult!.main.temp), true)
-                    }
+                    let weatherResult = try JSONDecoder().decode(CurrentWeather.self, from: data)
+                    self.weatherInfo = WeatherInfo(name: weatherResult.name, weather: weatherResult.weather[0].main, temp: weatherResult.main.temp)
+                    self.setWeatherImage(weather: self.weatherInfo!.weather)
                 } catch {
                     self.weatherImage.image = UIImage(named: "fail.png")
                     self.showLabel(result: false)
@@ -65,24 +62,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     func setWeather(_ weatherInfo: WeatherInfo?, _ result: Bool) {
         if result {
-            setWeatherImage(weather: weatherInfo!.weather)
-            self.nameLabel.text = weatherInfo!.name
-            self.weatherLabel.text = weatherInfo!.weather
-            self.tempLabel.text = String(Int(weatherInfo!.temp - 273.15)) + "°C"
+            nameLabel.text = weatherInfo!.name
+            weatherLabel.text = weatherInfo!.weather
+            tempLabel.text = String(Int(weatherInfo!.temp - 273.15)) + "°C"
             showLabel(result: true)
         } else {
-            self.weatherImage.image = UIImage(named: "fail.png")
-            self.showLabel(result: false)
+            weatherImage.image = UIImage(named: "fail.png")
+            showLabel(result: false)
         }
     }
     
     func showLabel(result: Bool) {
         if result {
-            self.nameLabel.alpha = 1.0
-            self.weatherLabel.alpha = 1.0
-            self.tempLabel.alpha = 1.0
+            nameLabel.alpha = 1.0
+            weatherLabel.alpha = 1.0
+            tempLabel.alpha = 1.0
         } else {
-            self.errorLabel.alpha = 1.0
+            errorLabel.alpha = 1.0
         }
     }
     
@@ -93,6 +89,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
                 guard let data = data else {return}
                 DispatchQueue.main.sync {
+                    self.indicator.stopAnimating()
+                    self.setWeather(self.weatherInfo, true)
                     self.weatherImage.image = UIImage(data: data)
                 }
             }).resume()
@@ -101,6 +99,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
                 guard let data = data else {return}
                 DispatchQueue.main.sync {
+                    self.indicator.stopAnimating()
+                    self.setWeather(self.weatherInfo, true)
                     self.weatherImage.image = UIImage(data: data)
                 }
             }).resume()
@@ -109,6 +109,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
                 guard let data = data else {return}
                 DispatchQueue.main.sync {
+                    self.indicator.stopAnimating()
+                    self.setWeather(self.weatherInfo, true)
                     self.weatherImage.image = UIImage(data: data)
                 }
             }).resume()
@@ -117,6 +119,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
                 guard let data = data else {return}
                 DispatchQueue.main.sync {
+                    self.indicator.stopAnimating()
+                    self.setWeather(self.weatherInfo, true)
                     self.weatherImage.image = UIImage(data: data)
                 }
             }).resume()
@@ -125,6 +129,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
                 guard let data = data else {return}
                 DispatchQueue.main.sync {
+                    self.indicator.stopAnimating()
+                    self.setWeather(self.weatherInfo, true)
                     self.weatherImage.image = UIImage(data: data)
                 }
             }).resume()
@@ -133,6 +139,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
                 guard let data = data else {return}
                 DispatchQueue.main.sync {
+                    self.indicator.stopAnimating()
+                    self.setWeather(self.weatherInfo, true)
                     self.weatherImage.image = UIImage(data: data)
                 }
             }).resume()
@@ -141,6 +149,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
                 guard let data = data else {return}
                 DispatchQueue.main.sync {
+                    self.indicator.stopAnimating()
+                    self.setWeather(self.weatherInfo, true)
                     self.weatherImage.image = UIImage(data: data)
                 }
             }).resume()
