@@ -9,60 +9,134 @@
 import UIKit
 import CoreLocation
 
-struct CurrentWeather:Codable {
-    let weather:[WeatherDetail]
-    let main:MainDetail
-    let name:String
-}
-
-struct WeatherDetail:Codable {
-    let main:String
-    let description:String
-}
-
-struct MainDetail:Codable {
-    let temp:Double
-}
-
 class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     let locationManager = CLLocationManager()
     var weatherResult: CurrentWeather?
     
+    @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var weatherLabel: UILabel!
+    @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         indicator.startAnimating()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coor = manager.location?.coordinate {
-            let URLStr = "http://api.openweathermap.org/data/2.5/weather?lat=\(coor.latitude)&lon=\(coor.longitude)&appid=\(weatherAPI)"
+            let param = "lat=\(coor.latitude)&lon=\(coor.longitude)"
+            let URLStr = "https://devcho.herokuapp.com/weather?"+param
             URLSession.shared.dataTask(with: URL(string: URLStr)!, completionHandler: {(data, response, error) -> Void in
                 do {
+                    guard error == nil else {
+                        DispatchQueue.main.sync {
+                            self.indicator.stopAnimating()
+                            self.weatherImage.image = UIImage(named: "fail.png")
+                            self.showLabel(result: false)
+                            print("http error : \(error!)")
+                        }
+                        return
+                    }
                     guard let data = data else {return}
                     self.weatherResult = try JSONDecoder().decode(CurrentWeather.self, from: data)
                     DispatchQueue.main.sync {
                         self.indicator.stopAnimating()
-                        self.performSegue(withIdentifier: "weather", sender: nil)
+                        self.setWeather(WeatherInfo(name: self.weatherResult!.name, weather: self.weatherResult!.weather[0].main, temp: self.weatherResult!.main.temp))
                     }
                 } catch {
+                    self.weatherImage.image = UIImage(named: "fail.png")
+                    self.showLabel(result: false)
                     print("decode error : \(error)")
                 }
             }).resume()
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "weather" {
-            let name = weatherResult!.name
-            let weather = weatherResult!.weather[0].main
-            let temp = weatherResult!.main.temp
-            let weatherView = segue.destination as! WeatherViewController
-            weatherView.weatherInfo = WeatherViewController.WeatherInfo(name: name, weather: weather, temp: temp)
+    func setWeather(_ weatherInfo: WeatherInfo) {
+        setWeatherImage(weather: weatherInfo.weather)
+        self.nameLabel.text = weatherInfo.name
+        self.weatherLabel.text = weatherInfo.weather
+        self.tempLabel.text = String(Int(weatherInfo.temp - 273.15)) + "°C"
+        showLabel(result: true)
+    }
+    
+    func showLabel(result: Bool) {
+        if result {
+            self.nameLabel.alpha = 1.0
+            self.weatherLabel.alpha = 1.0
+            self.tempLabel.alpha = 1.0
+        } else {
+            self.errorLabel.alpha = 1.0
+        }
+    }
+    
+    func setWeatherImage(weather: String) {
+        switch weather {
+        case "Thunderstorm":
+            let urlSTR = "http://openweathermap.org/img/w/11d.png"
+            URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
+                guard let data = data else {return}
+                DispatchQueue.main.sync {
+                    self.weatherImage.image = UIImage(data: data)
+                }
+            }).resume()
+        case "Drizzle":
+            let urlSTR = "http://openweathermap.org/img/w/09d.png"
+            URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
+                guard let data = data else {return}
+                DispatchQueue.main.sync {
+                    self.weatherImage.image = UIImage(data: data)
+                }
+            }).resume()
+        case "Rain":
+            let urlSTR = "http://openweathermap.org/img/w/10d.png"
+            URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
+                guard let data = data else {return}
+                DispatchQueue.main.sync {
+                    self.weatherImage.image = UIImage(data: data)
+                }
+            }).resume()
+        case "Snow":
+            let urlSTR = "http://openweathermap.org/img/w/13d.png"
+            URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
+                guard let data = data else {return}
+                DispatchQueue.main.sync {
+                    self.weatherImage.image = UIImage(data: data)
+                }
+            }).resume()
+        case "Mist":
+            let urlSTR = "http://openweathermap.org/img/w/50d.png"
+            URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
+                guard let data = data else {return}
+                DispatchQueue.main.sync {
+                    self.weatherImage.image = UIImage(data: data)
+                }
+            }).resume()
+        case "Clear":
+            let urlSTR = "http://openweathermap.org/img/w/01d.png"
+            URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
+                guard let data = data else {return}
+                DispatchQueue.main.sync {
+                    self.weatherImage.image = UIImage(data: data)
+                }
+            }).resume()
+        case "Clouds":
+            let urlSTR = "http://openweathermap.org/img/w/02d.png"
+            URLSession.shared.dataTask(with: URL(string: urlSTR)!, completionHandler: {(data, response, error) -> Void in
+                guard let data = data else {return}
+                DispatchQueue.main.sync {
+                    self.weatherImage.image = UIImage(data: data)
+                }
+            }).resume()
+        default:
+            return
         }
     }
 }

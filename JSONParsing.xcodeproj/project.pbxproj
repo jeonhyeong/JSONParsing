@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3DC5ACA8227ACE6D007C31DE /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3DC5ACA7227ACE6D007C31DE /* sunset.jpg */; };
-		3DC5ACAA227AD1F3007C31DE /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC5ACA9227AD1F3007C31DE /* WeatherViewController.swift */; };
+		3D360C4F22D0AB43005E04F7 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D360C4E22D0AB43005E04F7 /* Weather.swift */; };
 		3DCFDECC22797F6500B84D26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFDECB22797F6500B84D26 /* AppDelegate.swift */; };
 		3DCFDECE22797F6500B84D26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCFDECD22797F6500B84D26 /* ViewController.swift */; };
 		3DCFDED122797F6500B84D26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DCFDECF22797F6500B84D26 /* Main.storyboard */; };
@@ -17,8 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3DC5ACA7227ACE6D007C31DE /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.jpg; sourceTree = "<group>"; };
-		3DC5ACA9227AD1F3007C31DE /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		3D360C4E22D0AB43005E04F7 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		3DCFDEC822797F6500B84D26 /* JSONParsing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSONParsing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCFDECB22797F6500B84D26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DCFDECD22797F6500B84D26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,24 +56,15 @@
 		3DCFDECA22797F6500B84D26 /* JSONParsing */ = {
 			isa = PBXGroup;
 			children = (
-				3DCFDEDF2279820900B84D26 /* Resources */,
 				3DCFDECB22797F6500B84D26 /* AppDelegate.swift */,
 				3DCFDECD22797F6500B84D26 /* ViewController.swift */,
 				3DCFDECF22797F6500B84D26 /* Main.storyboard */,
 				3DCFDED222797F6600B84D26 /* Assets.xcassets */,
 				3DCFDED422797F6600B84D26 /* LaunchScreen.storyboard */,
 				3DCFDED722797F6600B84D26 /* Info.plist */,
-				3DC5ACA9227AD1F3007C31DE /* WeatherViewController.swift */,
+				3D360C4E22D0AB43005E04F7 /* Weather.swift */,
 			);
 			path = JSONParsing;
-			sourceTree = "<group>";
-		};
-		3DCFDEDF2279820900B84D26 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				3DC5ACA7227ACE6D007C31DE /* sunset.jpg */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +126,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DCFDED622797F6600B84D26 /* LaunchScreen.storyboard in Resources */,
-				3DC5ACA8227ACE6D007C31DE /* sunset.jpg in Resources */,
 				3DCFDED322797F6600B84D26 /* Assets.xcassets in Resources */,
 				3DCFDED122797F6500B84D26 /* Main.storyboard in Resources */,
 			);
@@ -151,7 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DCFDECE22797F6500B84D26 /* ViewController.swift in Sources */,
-				3DC5ACAA227AD1F3007C31DE /* WeatherViewController.swift in Sources */,
+				3D360C4F22D0AB43005E04F7 /* Weather.swift in Sources */,
 				3DCFDECC22797F6500B84D26 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +287,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4HNPZM5YM3;
 				INFOPLIST_FILE = JSONParsing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -316,6 +305,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4HNPZM5YM3;
 				INFOPLIST_FILE = JSONParsing/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
