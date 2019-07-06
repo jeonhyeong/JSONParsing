@@ -40,14 +40,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             let param = "lat=\(coor.latitude)&lon=\(coor.longitude)"
             let URLStr = "https://devcho.herokuapp.com/weather?"+param
             URLSession.shared.dataTask(with: URL(string: URLStr)!, completionHandler: {(weatherData, response, error) -> Void in
-                do {
-                    guard error == nil else {
-                        DispatchQueue.main.sync {
-                            self.indicator.stopAnimating()
-                            self.setWeather(nil, false)
-                        }
-                        return
+                guard error == nil else {
+                    DispatchQueue.main.sync {
+                        self.indicator.stopAnimating()
+                        self.setWeather(nil, false)
                     }
+                    return
+                }
+                do {
                     guard let data = weatherData else {return}
                     let weatherResult = try JSONDecoder().decode(CurrentWeather.self, from: data)
                     self.weatherInfo = WeatherInfo(name: weatherResult.name, weather: weatherResult.weather[0].main, temp: weatherResult.main.temp)
