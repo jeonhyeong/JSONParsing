@@ -29,10 +29,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        indicator.stopAnimating();
-        self.weatherImage.image = UIImage(named: "fail.png")
-        self.showLabel(result: false)
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.denied {
+            self.indicator.stopAnimating()
+            self.weatherImage.image = UIImage(named: "fail.png")
+            self.showLabel(result: false)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
