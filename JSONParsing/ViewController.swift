@@ -86,8 +86,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             nameLabel.alpha = 1.0
             weatherLabel.alpha = 1.0
             tempLabel.alpha = 1.0
+            if errorLabel.alpha == 0.0 {
+                return
+            }
+            errorLabel.alpha = 0.0
         } else {
             errorLabel.alpha = 1.0
+            if weatherLabel.alpha == 0.0 {
+                return
+            }
+            nameLabel.alpha = 0.0
+            weatherLabel.alpha = 0.0
+            tempLabel.alpha = 0.0
         }
     }
     
